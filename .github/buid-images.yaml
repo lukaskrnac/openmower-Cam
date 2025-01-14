@@ -1,0 +1,17 @@
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install podman
+
+      - name: Build container with Podman
+        run: podman build -t your-container-name .
+        
+      - name: Push container to registry
+        run: podman push your-container-name docker://your-registry-url
