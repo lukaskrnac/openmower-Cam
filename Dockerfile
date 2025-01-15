@@ -1,5 +1,5 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM arm64v8/ros:noetic-ros-core
+FROM ros:noetic-ros-core
 
 # Nastavenie pracovného adresára
 WORKDIR /app
