@@ -1,4 +1,5 @@
-name: Build and Push Multi-Architecture Image
+
+name: Build and Push Podman Image
 
 on:
   push:
@@ -12,25 +13,26 @@ jobs:
 
     steps:
       # Checkout repository
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      # Set up QEMU (potrebné na podporu viac architektúr)
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-        with:
-          platforms: all
+      # Install Podman
+      - name: Install Podman
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install podman
 
-      # Set up Docker Buildx (na zostavenie multiarchitektúrneho obrazu)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
+      # Log in to GitHub Packages
+      - name: Log in to GitHub Container Registry
+        run: |
+          echo "${{ secrets.PAT__TOKEN }}" | podman login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
-      # Build and push multi-arch image
-      - name: Build and Push Image
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
-          tags: |
-            ghcr.io/${{ github.repository }}/yolo_camera_node_ros:latest
-          push: true
+      # Build Podman image
+      - name: Build Podman image
+        run: |
+          podman build -t ghcr.io/${{ github.repository }}/yolo_camera_node_ros:latest .
+
+      # Push Podman image to GitHub Packages
+      - name: Push Podman image to GitHub Packages
+        run: |
+          podman push ghcr.io/${{ github.repository }}/yolo_camera_node_ros:latest
