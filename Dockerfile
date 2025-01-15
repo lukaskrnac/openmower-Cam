@@ -6,6 +6,8 @@ WORKDIR /app
 
 # Aktualizácia systému a inštalácia ROS balíkov a systémových závislostí
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    g++ \
     python3-pip \
     python3-opencv \
     ffmpeg \
