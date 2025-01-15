@@ -24,7 +24,7 @@ jobs:
       # Log in to GitHub Packages
       - name: Log in to GitHub Container Registry
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u $GITHUB_ACTOR --password-stdin
+          echo "${{ secrets.PAT_TOKEN }}" | podman login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
       # Build Podman image
       - name: Build Podman image
