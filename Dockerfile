@@ -1,7 +1,6 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
 FROM arm64v8/ros:noetic-ros-core  # Pre 64-bit ARM (napr. Ubuntu 20.04 64-bit)
 
-
 # Nastavenie pracovného adresára
 WORKDIR /app
 
@@ -16,12 +15,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ros-noetic-sensor-msgs \
     ros-noetic-std-msgs \
     ros-noetic-cv-bridge \
-    ros-noetic-catkin \
-    && rm -rf /var/lib/apt/lists/*
+    ros-noetic-catkin && \
+    apt-get autoremove -y && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Inštalácia Python knižníc cez pip
 RUN pip3 install --no-cache-dir \
-    ultralytics \
+    ultralytics==8.0.20 \
     opencv-python-headless \
     rospkg
 
@@ -29,4 +29,4 @@ RUN pip3 install --no-cache-dir \
 COPY yolo_camera_node.py /app/
 
 # Nastavenie spustenia Python skriptu
-CMD ["python3", "/app/yolo_camera_node.py"]
+ENTRYPOINT ["python3", "/app/yolo_camera_node.py"]
