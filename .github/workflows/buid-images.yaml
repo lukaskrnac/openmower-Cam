@@ -1,17 +1,37 @@
+name: Build and Push Podman Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
 
+    steps:
+      # Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install Podman
       - name: Install Podman
         run: |
           sudo apt-get update
           sudo apt-get -y install podman
 
-      - name: Build container with Podman
-        run: podman build -t your-container-name .
-        
-      - name: Push container to registry
-        run: podman push your-container-name docker://your-registry-url
+      # Log in to GitHub Packages
+      - name: Log in to GitHub Container Registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | podman login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+      # Build Podman image
+      - name: Build Podman image
+        run: |
+          podman build -t ghcr.io/${{ github.repository }}/yolo_camera_node_ros:latest .
+
+      # Push Podman image to GitHub Packages
+      - name: Push Podman image to GitHub Packages
+        run: |
+          podman push ghcr.io/${{ github.repository }}/yolo_camera_node_ros:latest
