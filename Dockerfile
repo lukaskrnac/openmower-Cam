@@ -18,4 +18,4 @@ RUN pip3 install --no-cache-dir \
 COPY yolo_camera.py /app/
 
 # Nastavenie spustenia Python skriptu
-ENTRYPOINT ["python3", "/app/yolo_camera.py"]
+# ENTRYPOINT ["python3", "/app/yolo_camera.py"]
