@@ -5,7 +5,7 @@ FROM navikey/raspbian-bullseye:latest
 WORKDIR /app
 
 # Aktualizácia systému balíkov a systémových závislostí
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install \
     python3 \
     python3-pip \
     python3-picamera2
