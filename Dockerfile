@@ -6,13 +6,13 @@ WORKDIR /app
 
 # Aktualizácia systému balíkov a systémových závislostí
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip \
+    python3-pip
 
 # Inštalácia Python knižníc cez pip
 RUN pip3 install --no-cache-dir \
     ultralytics \
     opencv-python-headless \
-    paho-mqtt \
+    paho-mqtt
 
 # Kopírovanie Python skriptu do kontajnera
 COPY yolo_camera.py /app/
