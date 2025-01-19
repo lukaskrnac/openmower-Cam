@@ -39,7 +39,7 @@ jobs:
       run: |
         docker buildx build \
           --platform linux/arm64 \
-          -t my-docker-image:latest \
+          -t lukaskrnac/openmower-cam:latest \
           --push \
           --cache-from=type=local,src=/tmp/.buildx-cache \
           --cache-to=type=local,dest=/tmp/.buildx-cache \
