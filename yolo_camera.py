@@ -133,6 +133,4 @@ while True:
         break
 
 # Uvoľnenie zdrojov
-cap.release()
-cv2.destroyAllWindows()
 client.loop_stop()
