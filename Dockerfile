@@ -1,12 +1,14 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM benchpilot/raspbian-picamera2:latest
+FROM navikey/raspbian-bullseye:latest
 
 # Nastavenie pracovného adresára
 WORKDIR /app
 
 # Aktualizácia systému balíkov a systémových závislostí
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3-pip
+    python3 \
+    python3-pip \
+    python3-picamera2
 
 # Inštalácia Python knižníc cez pip
 RUN pip3 install --no-cache-dir \
