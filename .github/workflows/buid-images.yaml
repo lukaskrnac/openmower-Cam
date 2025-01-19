@@ -32,8 +32,8 @@ jobs:
     
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
-        with:
-          platforms: arm
+      with:
+        platforms: linux/arm64
           
     - name: Build and push Docker image
       run: |
