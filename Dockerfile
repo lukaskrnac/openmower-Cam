@@ -7,7 +7,6 @@ WORKDIR /app
 # Aktualizácia systému balíkov a systémových závislostí
 RUN apt update && apt install -y --no-install-recommends \
     python3-pip \
-    python3-opencv \
     apt autoremove -y && apt clean && \
     rm -rf /var/lib/apt/lists/*
 
