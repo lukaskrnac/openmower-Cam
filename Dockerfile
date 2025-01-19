@@ -5,10 +5,10 @@ FROM benchpilot/raspbian-picamera2:server
 WORKDIR /app
 
 # Aktualizácia systému balíkov a systémových závislostí
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt update && apt install -y --no-install-recommends \
     python3-pip \
     python3-opencv \
-    apt-get autoremove -y && apt-get clean && \
+    apt autoremove -y && apt clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Inštalácia Python knižníc cez pip
