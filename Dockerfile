@@ -1,5 +1,5 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM benchpilot/raspbian-picamera2:server
+FROM benchpilot/raspbian-picamera2:latest
 
 # Nastavenie pracovného adresára
 WORKDIR /app
