@@ -1,5 +1,5 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM arm64v8/python:3.9
+FROM arm64v8/python:3.9.21-bullseye
 
 # Nastavenie pracovného adresára
 WORKDIR /app
