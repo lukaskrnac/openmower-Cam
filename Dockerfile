@@ -1,12 +1,11 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM fsodano79/raspbian:bullseye-20230101
+FROM arm64v8/python:3.9
 
 # Nastavenie pracovného adresára
 WORKDIR /app
 
 # Aktualizácia systému balíkov a systémových závislostí
 RUN apt-get update && apt-get install \
-    python3 \
     python3-pip \
     python3-picamera2
 
