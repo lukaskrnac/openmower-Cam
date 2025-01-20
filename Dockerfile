@@ -1,5 +1,5 @@
 # Použitie ROS Noetic obrazu (založené na Ubuntu 20.04)
-FROM navikey/raspbian-bullseye:latest
+FROM balenalib/rpi-raspbian:bullseye
 
 # Nastavenie pracovného adresára
 WORKDIR /app
