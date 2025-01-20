@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apt-get clean && rm -rf /var/lib/apt/lists/*
     
 # Aktualizácia systému balíkov a systémových závislostí
-RUN apt-get update && apt-get install \
+RUN apt-get update && apt-get install -y \
     python3-pip \
     python3-picamera2
 
